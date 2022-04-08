@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>post </title>
+<script language="javascript" >
+  function Post()
+ {
+ //单个值 Read.htm?username=baobao;
+ //多全值 Read.htm?username=baobao&sex=male;
+      url = "福州大学一码通.html?name=" + escape(document.all.name.value);
+      url += "&college=" + escape(document.all.college.value);
+      url += "&solgan=" + escape(document.all.solgan.value);
+　　location.href=url;
+}
+ </script>
+</head>
+<body>
+ 
+<input type="text" name="name" value="姓名" onfocus="javascript:if(this.value=='姓名')this.value='';">
+<input type="text" name="college" value="学院" onfocus="javascript:if(this.value=='学院')this.value='';">
+<input type="text" name="solgan" value="标语" onfocus="javascript:if(this.value=='标语')this.value='';">
+<input type="button" value="Post" onclick="Post()">
+
+ 
+</body>
+</html>

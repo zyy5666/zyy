@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>福州大学一码通</title>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .box{
+    width: 100vw;
+    height: 100vh;
+    background-color: #3385bd;
+    padding: 20px;
+  }
+  .title{
+    height: 100px;
+    display: flex;
+  }
+  .left{
+    flex: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    font-family:"微软雅黑";
+  }
+  .right{
+    flex: 30%;
+  }
+  .autoImg{
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .content{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 20px;
+  }
+  .l_code{
+    width: 100%;
+    height: 80px;
+  }
+  .timeBox{
+    color: #20923b;
+    font-size: 20px;
+    text-align: center;
+    font-family:"微软雅黑";
+    font-weight:bold;
+  }
+  .second_B{
+    font-size: 30px;
+  }
+  .code{
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+  }
+  .text{
+    font-size: 40px;
+    height: 50px;
+    color: #20923b;
+    overflow: hidden;
+  }
+  .footerImg{
+    width: 100px;
+    height: 30px;
+    margin-top: 30px;
+  }
+.small{
+    font-size: 13px;
+    color: #20923b;
+    text-align: left;
+  }
+  .footer{
+    color: #fff;
+    display: flex;
+    margin-top: 20px;
+  }
+  .txt{
+    border: 1px solid #fff;
+    font-size: 16px;
+    padding: 4px;
+    border-radius: 5px;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  
+</style>
+<!--<div class="up">
+<img src="http://m.qpic.cn/psc?/V54Wk2VD1Td5Sr1uQv4T0J0h5l3qjkw6/TmEUgtj9EK6.7V8ajmQrEJ.xsagxXV*w.Ei10XVPyBShhHyiCtLYR.p*w6fXwdqFq8k3PiaGDVzP7LUWswBe.GK2hINd3dPDQGQGnI8Au9Y!/b&amp;bo=ZASWAAAAAAABF8Y!&amp;rf=viewer_4" alt="" class="autoImg">
+</div>-->
+<body>
+  <div id="app">
+    <div class="box">
+      <div class="title">
+        <div class="left">
+          <div>姓名：<a id="name"> </a></div>
+          <div style="margin-top: 12px;">部门：<b id="college"> </b></div>
+        </div>
+        <div class="right">
+          <img class="autoImg" src="http://m.qpic.cn/psc?/V54Wk2VD1Td5Sr1uQv4T0J0h5l3qjkw6/TmEUgtj9EK6.7V8ajmQrEDr76pYmwbLd9oguDf93Kq6ZyKm3wAUo60ISsH*IqTmQoSKZrQzbSUrTDynLS1kn00C3AgUQ3MfR.mJplRcMdqo!/b&bo=TgFCAQAAAAABFzw!&rf=viewer_4">
+        </div>
+      </div>
+      <div class="content">
+        <div class="l_code">
+          <img class="autoImg" src="http://m.qpic.cn/psc?/V54Wk2VD1Td5Sr1uQv4T0J0h5l3qjkw6/TmEUgtj9EK6.7V8ajmQrEB.ymLaO468iqUfGaCGBoxUl3OnrYoIC4iiTy2wpNhw5ZZmk8PuTEpVJsmP.fzo8XJAHyqUIiEk7gCPMTARkdkY!/b&bo=jAP8AAAAAAABF0M!&rf=viewer_4">
+        </div>
+        <div class="timeBox">
+          <span>0</span><span>{{time.month}}</span>月<span>{{time.day}}</span>日 <span class="second_B">{{time.second}}</span> <span>{{time.hour}}</span>:<span>{{time.minute}}</span>
+        </div>
+        <div class="code" @click="checkImg">
+          <img class="autoImg"  id="image" :src="code" >
+        </div>
+        <div class="text"><span ref="moveText"> <c id="solgan"> </c></span></div>
+<div class="small"><span>未见异常，允许通行，请主动出示，配合检查，并做好自我防护，出行前请确认。</span></div>
+        <div class="footerImg">
+          <img class="autoImg" src="http://m.qpic.cn/psc?/V54Wk2VD1Td5Sr1uQv4T0J0h5l3qjkw6/TmEUgtj9EK6.7V8ajmQrEOlo7Z0gl4WsnxkyQHJJuFZSsmEWbssisHUf*3lqkJrK7G4u8WFButj.RCP4M0L8PDxoIua5*OGSky0Lk..geT0!/b&bo=WARcAQAAAAABFzE!&rf=viewer_4" alt="">
+        </div>
+      </div>
+      <div class="footer">
+        <div class="txt">每日健康填报</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+<script>
+    String.prototype.getQuery = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = this.substr(this.indexOf("?") + 1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    var str = location.search;
+    alert(str.getQuery("name"));
+    alert(str.getQuery("college"));
+    alert(str.getQuery("solgan"));
+
+    var name = str.getQuery("name");
+    var college = str.getQuery("college");
+    var solgan = str.getQuery("solgan");
+
+    document.getElementById("name").innerHTML = name;
+    document.getElementById("college").innerHTML = college; 
+    document.getElementById("solgan").innerHTML = solgan; 
+
+  new Vue({
+    el: '#app',
+    data: {
+      i:0,
+      time:{},
+      code:"http://m.qpic.cn/psc?/V54Wk2VD1Td5Sr1uQv4T0J0h5l3qjkw6/TmEUgtj9EK6.7V8ajmQrEHx*fVW9jetEcgM2lz7XKftKZIVJj0n.*QFKMksr.YiwjMoGbybzYR*EBJ7C0fW6*xNw*K.F646w4mJlqVTIgPs!/b&bo=wgHFAQAAAAADFzU!&rf=viewer_4",
+      imgData:[
+        {
+          url:"http://m.qpic.cn/psc?/V54Wk2VD1Td5Sr1uQv4T0J0h5l3qjkw6/TmEUgtj9EK6.7V8ajmQrEHx*fVW9jetEcgM2lz7XKftKZIVJj0n.*QFKMksr.YiwjMoGbybzYR*EBJ7C0fW6*xNw*K.F646w4mJlqVTIgPs!/b&bo=wgHFAQAAAAADFzU!&rf=viewer_4"
+        },
+        {
+          url:"http://m.qpic.cn/psc?/V54Wk2VD1Td5Sr1uQv4T0J0h5l3qjkw6/TmEUgtj9EK6.7V8ajmQrEHStriICI7hcvwehwBC1SV*68PfaZaATPe3XhVoLZLfzHnpUf97PM1NYsX1AIylrzN1DjpSJ*j8yp7f6tnJWspc!/b&bo=SgJKAgAAAAABFzA!&rf=viewer_4"
+        }
+      ]
+    },
+    created(){
+      this.getTime();
+    },
+    mounted(){
+      let x = 0
+      let timer = setInterval(() => {
+        this.$refs.moveText.style.marginLeft = `${x}px`;
+        x = x - 5;
+        if(x == -65){
+          x = 295
+        }
+        
+      },100)
+    },
+    methods: {
+      initTime(){
+        let date = new Date();
+        let time = {
+          month: date.getMonth()+1,
+          day: date.getDate(),
+          second:date.getSeconds(),
+          minute:date.getMinutes(),
+          hour:date.getHours()
+        }
+        if(time.second < 10){
+          time.second = `0${time.second}`
+        }
+        if(time.minute < 10){
+          time.minute = `0${time.minute}`
+        }
+        if(time.hour < 10){
+          time.hour = `0${time.hour}`
+        }
+        this.time = time
+      },
+      getTime(){
+        this.initTime();
+        let that = this
+        let timer = setInterval(function(){
+          that.initTime();
+        },1000)
+      },
+      checkImg(){
+        if(this.i == 0){
+          this.i = 1
+          this.code = this.imgData[1].url
+        }else{
+          this.i = 0
+          this.code = this.imgData[0].url
+        }
+      }
+    }
+  });
+</script>
